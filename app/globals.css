@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+  --bg: oklch(0.985 0.01 95);
+  --tint: oklch(0.955 0.022 125);
+  --ink: oklch(0.24 0.025 150);
+  --muted: oklch(0.45 0.025 150);
+  --brand: oklch(0.38 0.075 152);
+  --brand-dark: oklch(0.29 0.06 152);
+  --cta: oklch(0.82 0.145 82);
+  --cta-hover: oklch(0.77 0.15 78);
+  --line: oklch(0.89 0.02 120);
+  --star: oklch(0.78 0.16 75);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-tint: var(--tint);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-line: var(--line);
+  --color-star: var(--star);
+  --font-serif-head: var(--font-heading);
+  --font-sans-body: var(--font-body);
+}
+
+html { background: var(--bg) !important; scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { background: var(--bg) !important; color: var(--ink); font-family: var(--font-body), system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.65; }
+h1, h2, h3 { font-family: var(--font-heading), Georgia, serif; font-weight: 700; line-height: 1.15; color: var(--ink); }
+
+.rise { animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rise-2 { animation-delay: 0.08s; }
+.rise-3 { animation-delay: 0.16s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+.btn { transition: transform 0.15s ease-out, background-color 0.2s ease-out, box-shadow 0.2s ease-out; }
+.btn:active { transform: scale(0.98); }
+.lift { transition: transform 0.25s ease-out, box-shadow 0.25s ease-out; }
+.lift:hover { transform: translateY(-3px); box-shadow: 0 14px 30px -18px oklch(0.29 0.06 152 / 0.45); }
+
+details summary::-webkit-details-marker { display: none; }
+details summary { list-style: none; cursor: pointer; }
+details .plus { transition: transform 0.2s ease-out, background-color 0.2s ease-out; }
+details[open] .plus { transform: rotate(45deg); background: var(--brand); color: white; }
+
+:focus-visible { outline: 3px solid var(--cta); outline-offset: 3px; border-radius: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise, .lift, .btn, details .plus { animation: none !important; transition: none !important; }
+  .lift:hover { transform: none; }
+}
